@@ -1,0 +1,90 @@
+﻿@page  "{searchString?}"
+@model Conntact_Book.Pages.Contacts.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista Abonamentów</h1>
+
+<form>
+    <p>
+        Wyszukiwarka <input type="text" asp-for="SearchString" />
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Imię
+                @*@Html.DisplayNameFor(model => model.Contact[0].Name)*@
+            </th>
+            <th>
+                Nazwisko
+                @*@Html.DisplayNameFor(model => model.Contact[0].Surname)*@
+            </th>
+            <th>
+                Wiek
+                @*@Html.DisplayNameFor(model => model.Contact[0].Age)*@
+            </th>
+            <th>
+                Płeć
+                @*@Html.DisplayNameFor(model => model.Contact[0].Gender)*@
+            </th>
+            <th>
+                Kod pocztowy
+                @*@Html.DisplayNameFor(model => model.Contact[0].PostCode)*@
+            </th>
+            <th>
+                Miasto
+                @*@Html.DisplayNameFor(model => model.Contact[0].City)*@
+            </th>
+            <th>
+                Ulica
+                @*@Html.DisplayNameFor(model => model.Contact[0].Street)*@
+            </th>
+            <th>
+                Numer Mieszkania
+                @*@Html.DisplayNameFor(model => model.Contact[0].HomeNumber)*@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Contact) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PostCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HomeNumber)
+            </td>
+            <td>
+                <a asp-page="./Contacts/Edit" asp-route-id="@item.Id">Edycja</a> |
+                <a asp-page="./Contacts/Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-page="./Contacts/Delete" asp-route-id="@item.Id">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
